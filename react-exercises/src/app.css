@@ -1,0 +1,56 @@
+*{
+    margin:0;
+   padding:0;
+   box-sizing: border-box;
+}
+
+.overlay{
+position: absolute;
+ top: 0px;
+ left:0px;
+ width: 100vw;
+ height: 100vh;
+ background-color: rgba(0, 0,0, 0.5);
+}
+
+.popupbox{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+ display: flex;
+ justify-content: space-evenly;
+ align-items: center;
+    width: 400px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color:#fff;
+}
+
+.controls{
+    display: flex;
+  flex-direction: row;
+    gap:0 10px;
+  
+}
+
+
+.controls button{
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.addButton{
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.popupbox input{
+padding: 10px;
+border-radius: 10px;
+}
+
+
+/* .taskList{} */
