@@ -1,0 +1,42 @@
+.container{
+  position:absolute;
+top:50%;
+left:50%;
+transform: translate(-50%, -50%);
+border: 1px solid black;
+padding: 10px;
+height: 200px;
+width: 400px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+gap: 10px;
+background-color:aqua;
+border-radius: 20px;
+}
+
+
+.data-input-flames{
+    display: flex;
+    gap: 10px;
+}
+
+.data-input-flames input{
+text-align: center;
+    padding: 5px;
+}
+
+.controls-flames button{
+    padding:7px;
+    color:white;
+    background:blue;
+    border-radius: 14px;
+}
+
+.flames-overlay{
+    position: absolute;
+    height:100%;
+    width:100%;
+    background:rgba(0,0,0, 0.5);
+}

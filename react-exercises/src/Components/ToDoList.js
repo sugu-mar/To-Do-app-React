@@ -1,62 +1,95 @@
-import React, { useState } from "react";
+import React,{useState} from  "react";
+import { EditPopup } from "./EditPopup";
+import { Popup } from "./Popup";
 
-export default function App() {
-  const [name, setName] = useState();
 
-  const [password, setPassword] = useState("");
+function ToDoList() {
+  const [popup, setPopup] = useState(false);
+  const [task, setTask] = useState([]);
+  const [newTask, setNewTask] = useState();
+  const [userInput, setUserInput] = useState("");
+  const [editpopup, setEditPopup] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
 
-  const [displayName, setDisplayName] = useState();
+  function addNewTask() {
+    if (userInput) {
+      let currentTask = userInput;
+      setNewTask(currentTask);
+      setTask([...task, currentTask]);
+    }
 
-  const [displayPassword, setDisplayPassword] = useState();
+    setUserInput("");
+    setPopup(false);
+  }
 
-  function handleSubmitButton(event) {
-    event.preventDefault();
+  function editFun(t, index) {
+    setEditPopup(true);
+    setUserInput(t);
+    setEditIndex(index);
+  }
 
-    setDisplayName(name);
+  function editTask(index) {
+    const updatedTask = task.map((value, i) => {
+      return index === i ? userInput : value;
+    });
+    setTask(updatedTask);
+    setEditPopup(false);
+    setUserInput("");
+    setEditIndex(null);
+  }
 
-    setDisplayPassword(password);
+  function deleteFun(index) {
+    setTask(
+      task.filter((a, i) => {
+        return i !== index;
+      })
+    );
+  }
 
-    setName("");
-
-    setPassword("");
+  function popupfun() {
+    setPopup(true);
   }
   return (
     <>
-      <form onSubmit={handleSubmitButton}>
-        <div>
-          <label for="name">Name : </label>
-          <input
-            id="name"
-            placeHolder="Enter the name"
-            onChange={(event) => {
-              setName(event.target.value);
-              setDisplayName("");
-            }}
-            value={name}
-          />
-        </div>
+      <h1>TODO LIST</h1>
+      <button className="addButton" onClick={() => popupfun()}>
+        Add Task
+      </button>
 
-        <div>
-          <label for="password">Password : </label>
-          <input
-            id="password"
-            type="password"
-            placeHolder="Enter the password"
-            onChange={(event) => {
-              setPassword(event.target.value);
-              setDisplayPassword("");
-            }}
-            value={password}
-          />
-        </div>
+      {popup && (
+        <Popup
+          setUserInput={setUserInput}
+          addNewTask={addNewTask}
+          userInput={userInput}
+          setPopup={setPopup}
+        />
+      )}
 
-        <button type="submit">submit</button>
-      </form>
+      {editpopup && (
+        <EditPopup
+          setUserInput={setUserInput}
+          userInput={userInput}
+          editTask={editTask}
+          setEditPopup={setEditPopup}
+          setTask={setTask}
+          index={editIndex}
+          task={task}
+        />
+      )}
 
       <div>
-        <p>Name : {displayName}</p>
-        <p>Password : {displayPassword}</p>
+        {task.map((t, index) => (
+          <div className="taskList" key={index}>
+            <p>{t}</p>
+            <div className="displayTaskControls">
+              <button onClick={() => editFun(t, index)}>Edit</button>
+              <button onClick={() => deleteFun(index)}>Delete</button>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
 }
+
+export default ToDoList
