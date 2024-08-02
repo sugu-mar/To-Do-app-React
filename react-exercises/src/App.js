@@ -3,13 +3,23 @@ import "./app.css"
 import ToDoList from './Components/ToDoList';
 import LoginPage from './Components/Login';
 import Flames from './Components/Flames/Flames';
+import SimpleToDoList from './Components/SimpleToDoList';
+import CountrySearchBox from './Components/Country_Search_Box/CountrySearchBox';
+import PhotoApp from './Components/PhotoApp/PhotoApp';
 
 function App() {
   
   return<>
   {/* <ToDoList/> */}
 {/* <LoginPage/> */}
-<Flames/>
+
+{/* <Flames/> */}
+
+{/* <SimpleToDoList/> */}
+
+{/* <CountrySearchBox/> */}
+
+<PhotoApp/>
 
 </>;
 }
